@@ -16,16 +16,14 @@ class Wielomian(val wspolczynniki: MutableList<Double>) {
         }
     }
 
-    /**
-     * Zwraca stopień wielomianu.
-     * @return Najwyższy wykładnik x.
-     */
+
+     // Zwraca stopień wielomianu.
+
     fun stopien(): Int = wspolczynniki.size - 1
 
-    /**
-     * Zwraca tekstową reprezentację wielomianu.
-     * @return Łańcuch znaków z postacią wielomianu.
-     */
+
+     //Zwraca tekstową reprezentację wielomianu.
+
     override fun toString(): String {
         var tekst = "W(x) = "
         for (i in wspolczynniki.size - 1 downTo 0) {
@@ -35,11 +33,9 @@ class Wielomian(val wspolczynniki: MutableList<Double>) {
         return tekst
     }
 
-    /**
-     * Oblicza wartość wielomianu dla danej liczby x.
-     * @param x Wartość zmiennej.
-     * @return Wynik działania.
-     */
+
+    // Oblicza wartość wielomianu dla danej liczby x.
+
     operator fun invoke(x: Double): Double {
         var suma = 0.0
         for (i in wspolczynniki.indices) {
@@ -48,11 +44,9 @@ class Wielomian(val wspolczynniki: MutableList<Double>) {
         return suma
     }
 
-    /**
-     * Dodaje dwa wielomiany.
-     * @param other Inny wielomian.
-     * @return Nowy Wielomian – suma.
-     */
+
+     //Dodaje dwa wielomiany.
+
     operator fun plus(other: Wielomian): Wielomian {
         val max = maxOf(this.wspolczynniki.size, other.wspolczynniki.size)
         val nowa = MutableList(max) { 0.0 }
@@ -64,11 +58,9 @@ class Wielomian(val wspolczynniki: MutableList<Double>) {
         return Wielomian(nowa)
     }
 
-    /**
-     * Odejmuje dwa wielomiany.
-     * @param other Inny wielomian.
-     * @return Nowy Wielomian – różnica.
-     */
+
+     //Odejmuje dwa wielomiany
+
     operator fun minus(other: Wielomian): Wielomian {
         val max = maxOf(this.wspolczynniki.size, other.wspolczynniki.size)
         val nowa = MutableList(max) { 0.0 }
@@ -80,11 +72,9 @@ class Wielomian(val wspolczynniki: MutableList<Double>) {
         return Wielomian(nowa)
     }
 
-    /**
-     * Mnoży dwa wielomiany.
-     * @param other Inny wielomian.
-     * @return Nowy Wielomian – iloczyn.
-     */
+
+     //Mnoży dwa wielomiany.
+
     operator fun times(other: Wielomian): Wielomian {
         val nowa = MutableList(this.stopien() + other.stopien() + 1) { 0.0 }
         for (i in this.wspolczynniki.indices) {
